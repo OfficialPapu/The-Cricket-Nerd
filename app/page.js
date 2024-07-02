@@ -1,7 +1,7 @@
 import React from 'react';
-import YoutubeSlider from '@/Components/Home/YouTube Video';
-import Matches from '@/Components/Home/Matches';
-import LatestNews from '@/Components/Home/Latest News';
+import YoutubeSlider from '@/app/(Routing)/Home/YouTube Video';
+import Matches from '@/app/(Routing)/Home/Matches';
+import LatestNews from '@/app/(Routing)/Home/Latest News';
 export default function Home() {
   return (
     <>
