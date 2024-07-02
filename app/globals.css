@@ -58,9 +58,6 @@ header {
   }
 }
 
-
-
-
 footer {
   background: #111827;
   color: #fff;
@@ -115,11 +112,21 @@ footer {
   transform: scale(1.1);
 }
 
-.bxl-facebook-circle { color: #1877F2; }
-.bxl-telegram { color: #0088CC; }
-.bxl-whatsapp { color: #25D366; }
-.bxl-youtube { color: #FF0000; }
-.bxl-instagram { color: #E1306C; }
+.bxl-facebook-circle {
+  color: #1877f2;
+}
+.bxl-telegram {
+  color: #0088cc;
+}
+.bxl-whatsapp {
+  color: #25d366;
+}
+.bxl-youtube {
+  color: #ff0000;
+}
+.bxl-instagram {
+  color: #e1306c;
+}
 
 .footer-bottom {
   background: #000;
@@ -131,21 +138,34 @@ footer {
 
 @media (max-width: 768px) {
   .footer-content p {
-      font-size: 13px;
+    font-size: 13px;
   }
 
-  .footer-content h4, .footer-content h3 {
-      font-size: 1.2rem;
+  .footer-content h4,
+  .footer-content h3 {
+    font-size: 1.2rem;
   }
 
   .socials a {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 }
 
-@media (max-width:585px) {
-  .swiper-slide{
+@media (max-width: 585px) {
+  .swiper-slide {
     display: flex;
     justify-content: center;
   }
+}
+
+.hero-section-blur {
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url("https://picsum.photos/800/340");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(1px);
+}
+.hero-section :is(p, h1) {
+  color: white;
 }

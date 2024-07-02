@@ -42,7 +42,7 @@ export default function Navbar() {
         data-state={isOpen ? "open" : "closed"}
         onClick={toggleMenu}
       >
-        {isOpen ? <HiOutlineMenuAlt3  className='text-3xl'/> : <AiOutlineClose  className='text-3xl'/>}
+        {isOpen ?  <AiOutlineClose  className='text-3xl'/> :<HiOutlineMenuAlt3  className='text-3xl'/>}
       </button>
       <nav className={`Navbar ${isOpen ? 'Active' : ''}`}>
         <ul className="flex flex-col list-none justify-center lg:flex-row lg:gap-9">
