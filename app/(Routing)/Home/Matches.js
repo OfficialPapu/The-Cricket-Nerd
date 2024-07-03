@@ -1,11 +1,12 @@
 import { PiCaretDoubleRightThin } from "react-icons/pi";
+import Link from "next/link";
 export default function Matches() {
     const ongoingMatches = [
         {
             id: 1,
             team1: "IND",
             team2: "AUS",
-            title:"ICC CWC League 2",
+            title: "ICC CWC League 2",
             team1Flag: "Flags/1x1/au.svg",
             team2Flag: "Flags/1x1/in.svg",
             matchTime: "10:00 AM",
@@ -16,7 +17,7 @@ export default function Matches() {
             id: 2,
             team1: "England",
             team2: "South Africa",
-            title:"ICC CWC League 2",
+            title: "ICC CWC League 2",
             team1Flag: "Flags/1x1/za.svg",
             team2Flag: "Flags/1x1/gb-eng.svg",
             matchTime: "2:00 PM",
@@ -27,7 +28,7 @@ export default function Matches() {
             id: 3,
             team1: "England",
             team2: "South Africa",
-            title:"ICC CWC League 2",
+            title: "ICC CWC League 2",
             team1Flag: "Flags/1x1/za.svg",
             team2Flag: "Flags/1x1/eu.svg",
             matchTime: "2:00 PM",
@@ -38,7 +39,7 @@ export default function Matches() {
             id: 4,
             team1: "England",
             team2: "South Africa",
-            title:"ICC CWC League 2",
+            title: "ICC CWC League 2",
             team1Flag: "Flags/1x1/za.svg",
             team2Flag: "Flags/1x1/eu.svg",
             matchTime: "2:00 PM",
@@ -57,11 +58,11 @@ export default function Matches() {
 
                 <div className="flex items-center justify-between my-4 p-3 rounded-lg border">
                     <h3 className="text-lg font-medium">The Cricket Show</h3>
-                    <a href="#"><button variant="subtle" className="flex items-center gap-2">
+                    <Link href="./Match"><button variant="subtle" className="flex items-center gap-2">
                         <span>View All</span>
                         <PiCaretDoubleRightThin />
                     </button>
-                    </a>
+                    </Link>
                 </div>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {ongoingMatches.map((match) => (

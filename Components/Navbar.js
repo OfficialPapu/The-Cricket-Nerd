@@ -50,16 +50,16 @@ export default function Navbar() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="News">News</Link>
+            <Link href="./News">News</Link>
           </li>
           <li>
-            <Link href="News">Match</Link>
+            <Link href="./Match">Match</Link>
           </li>
           <li>
-            <Link href="News">Videos</Link>
+            <Link href="./Videos">Videos</Link>
           </li>
           <li>
-            <Link href="News">Statistics</Link>
+            <Link href="./Statistics">Statistics</Link>
           </li>
         </ul>
       </nav>
