@@ -30,9 +30,6 @@ export default function Navbar() {
   };
 
   return (<>
-    <head>
-      <link rel="shortcut icon" href="Images/The Cricket Nerd.png" type="image/x-icon" />
-    </head>
     <header className="flex h-20 w-full items-center justify-between px-4 md:px-6">
       <a className="mr-6 flex items-center justify-between" href="/">
         <img src="Images/The Cricket Nerd.png" alt="Logo" width={100} />
