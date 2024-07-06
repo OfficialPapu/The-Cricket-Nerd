@@ -7,13 +7,9 @@ const CurrentNews = () => {
   useEffect(() => {
     ListAllNews();
   }, []);
-  const ListAllNews = () => {
-    axios.get("http://localhost/The Cricket Nerd/API/GET/News.php", { params: { ListAllNews: true } }).then((response) => {
-      response = response.data;
-      setAllNews(response);
-    }).catch((error) => {
-
-    })
+  const ListAllNews = async () => {
+    let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/News.php", { params: { ListAllNews: true } })
+    setAllNews(response.data);
   }
   return (
     <>
@@ -22,15 +18,15 @@ const CurrentNews = () => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {AllNews.map((Item, Index) => (
             <>
-             <Link
+              <Link
                 href={`Spotlight/${Item['Slug Url']}`}
                 className="group grid gap-4 rounded-lg border bg-card p-4 transition-colors hover:bg-muted">
                 <img
-                   src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                  src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
                   width={300}
                   height={200}
                   alt="News Article"
-                  className="aspect-[3/2] w-full rounded-lg object-cover"/>
+                  className="aspect-[3/2] w-full rounded-lg object-cover" />
                 <div>
                   <h3 className="text-lg font-medium group-hover:underline">
                     {Item.Title}

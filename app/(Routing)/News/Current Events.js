@@ -10,17 +10,9 @@ const CurrentEvents = () => {
     GetData();
   }, []);
 
-  const GetData = () => {
-    axios.get("http://localhost/The Cricket Nerd/API/GET/News.php",{params:{CurrentEvents:true,}})
-      .then((response) => {
-        const data = response.data;
-        if (Array.isArray(data)) {
-          setNewsData(data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+  const GetData = async () => {
+    let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/News.php",{params:{CurrentEvents:true,}})
+    setNewsData(response.data);
   };
   return (
     <div className="bg-muted py-6 md:py-12">
@@ -49,7 +41,7 @@ const CurrentEvents = () => {
             )}
           </div>
           <div className="space-y-6">
-            <div className="rounded-lg border bg-card p-4">
+            {/* <div className="rounded-lg border bg-card p-4">
               <h2 className="text-xl font-bold">Categories</h2>
               <nav className="mt-4 space-y-2">
                 <Link href="#"
@@ -90,7 +82,7 @@ const CurrentEvents = () => {
                   <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">8</span>
                 </Link>
               </nav>
-            </div>
+            </div> */}
             <div>
               <h2 className="text-xl font-bold">Trending</h2>
               <div className="mt-4 space-y-4">
