@@ -31,7 +31,7 @@ const CurrentEvents = () => {
                   className="aspect-[7/4] w-full rounded-lg object-cover"
                 />
                 <div className="mt-4 space-y-2">
-                  <h1 className="text-3xl font-bold md:text-4xl">{NewsData[0].Title}</h1>
+                 <Link href={`Spotlight/${NewsData[0]['Slug Url']}`}> <h1 className="text-3xl font-bold md:text-4xl">{NewsData[0].Title}</h1></Link>
                   <p className="text-muted-foreground">
                     {NewsData[0].Description}
                   </p>
