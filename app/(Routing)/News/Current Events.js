@@ -11,7 +11,7 @@ const CurrentEvents = () => {
   }, []);
 
   const GetData = () => {
-    axios.get("http://localhost/The Cricket Nerd/API/GET/News.php")
+    axios.get("http://localhost/The Cricket Nerd/API/GET/News.php",{params:{CurrentEvents:true,}})
       .then((response) => {
         const data = response.data;
         if (Array.isArray(data)) {
@@ -96,7 +96,7 @@ const CurrentEvents = () => {
               <div className="mt-4 space-y-4">
 
                 {NewsData.slice(1).map((Item, Index) => (
-                    <Link key={Index} href={`Spotlight/${Index}`} className="grid grid-cols-[100px_1fr] items-center gap-4 rounded-lg border bg-card p-4">
+                    <Link key={Index} href={`Spotlight/${Item['Slug Url']}`} className="grid grid-cols-[100px_1fr] items-center gap-4 rounded-lg border bg-card p-4">
                       <img
                         src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
                         width={100}
