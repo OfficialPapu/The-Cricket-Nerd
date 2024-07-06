@@ -13,7 +13,6 @@ const CurrentEvents = () => {
   const GetData = () => {
     axios.get("http://localhost/The Cricket Nerd/API/GET/News.php")
       .then((response) => {
-        console.log(response.data);
         const data = response.data;
         if (Array.isArray(data)) {
           setNewsData(data);
@@ -95,7 +94,25 @@ const CurrentEvents = () => {
             <div>
               <h2 className="text-xl font-bold">Trending</h2>
               <div className="mt-4 space-y-4">
-                {TrandingNews(NewsData)}
+
+                {NewsData.slice(1).map((Item, Index) => (
+                    <Link key={Index} href={`Spotlight/${Index}`} className="grid grid-cols-[100px_1fr] items-center gap-4 rounded-lg border bg-card p-4">
+                      <img
+                        src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                        width={100}
+                        height={100}
+                        className="aspect-square rounded-lg object-cover"
+                        alt="Trending News"
+                      />
+                      <div>
+                        <h3 className="text-sm font-medium">{Item.Title}</h3>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                         {Item.Description}
+                        </p>
+                      </div>
+                    </Link>
+                ))}
+
               </div>
             </div>
           </div>
@@ -107,28 +124,3 @@ const CurrentEvents = () => {
 
 
 export default CurrentEvents;
-
-
-const TrandingNews = (NewsData) => {
-  return <>
-    {NewsData.map(() => {
-      <>
-        <Link href="#" className="grid grid-cols-[100px_1fr] items-center gap-4 rounded-lg border bg-card p-4">
-          <img
-            src="https://picsum.photos/1000/310"
-            width={100}
-            height={100}
-            alt="Trending News"
-            className="aspect-square rounded-lg object-cover"
-          />
-          <div>
-            <h3 className="text-sm font-medium">Kohli Scores Stunning Century in ODI Series</h3>
-            <p className="mt-1 text-xs text-muted-foreground">
-              The Indian batting maestro continues to impress with his consistent performances.
-            </p>
-          </div>
-        </Link>
-      </>
-    })}
-  </>
-}
