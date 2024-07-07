@@ -28,11 +28,11 @@ const CurrentNews = () => {
                   alt="News Article"
                   className="aspect-[3/2] w-full rounded-lg object-cover" />
                 <div>
-                  <h3 className="text-lg font-medium group-hover:underline">
-                    {Item.Title}
-                  </h3>
+                  <h2 className="text-lg font-bold group-hover:underline">
+                  {TruncateText(Item.Description, 50)}
+                  </h2>
                   <p className="mt-2 text-muted-foreground">
-                    {Item.Description}
+                  {TruncateText(Item.Description, 100)}
                   </p>
                 </div>
               </Link>
@@ -46,3 +46,10 @@ const CurrentNews = () => {
 
 export default CurrentNews;
 
+
+const TruncateText = (text, maxLength) => {
+  if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+  }
+  return text;
+};

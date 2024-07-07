@@ -1,4 +1,3 @@
-import {TruncateText} from "@/Components/Utility/TruncateText"   
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import Link from "next/link"
 import React, { useEffect, useState } from 'react'
@@ -20,6 +19,7 @@ const RelatedNews = () => {
 
         fetchData();
     }, []);
+
     return (
         <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,12 +40,11 @@ const RelatedNews = () => {
                                 <div className="space-y-2">
                                     <Link href={Item['Slug Url']} className="block" prefetch={false}>
                                         <h3 className="text-xl font-semibold transition-colors duration-300 group-hover:text-primary">
-                                            {Item.Title}
+                                        {TruncateText(Item.Title,30)}
                                         </h3>
                                     </Link>
                                     <p className="text-muted-foreground">
-                                        {TruncateText}
-                                        {/* {TruncateText(TruncateText,1)} */}
+                                        {TruncateText(Item.Description,100)}
                                     </p>
                                 </div>
                                 <div className="mt-4">
@@ -68,3 +67,9 @@ const RelatedNews = () => {
 
 export default RelatedNews;
 
+const TruncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + "...";
+    }
+    return text;
+};
