@@ -1,4 +1,22 @@
+"use client"
+import axios from "axios";
+import { useEffect, useState } from "react"
+
 export default function Videos() {
+    const [Videos, setVideos] = useState([]);
+    useEffect(() => {
+        let GetVideos = async () => {
+            let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Videos.php", { params: { GetAllVideo: true } });
+            response = response.data;
+            if (response.length > 0) {
+                setVideos(response);
+            } else {
+
+            }
+        }
+        GetVideos();
+    }, []);
+
     return (
         <div className="w-full max-w-[85rem] mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
@@ -8,40 +26,14 @@ export default function Videos() {
                     tutorials to industry insights.
                 </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-                {VideosList()}
-                {VideosList()}
-                {VideosList()}
-                {VideosList()}  
-                {VideosList()}
-                {VideosList()}
-                {VideosList()}
-                {VideosList()}  
-                {VideosList()}
-                {VideosList()}
-                {VideosList()}
-                {VideosList()}  
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden">
+                {Videos.map((Item, index) => (
+                    <div className="border p-4 rounded-lg flex flex-col justify-between" key={index}>
+                        <div className="video-container" dangerouslySetInnerHTML={{ __html: Item.Iframe }} />
+                        <h3 className="mt-4">{Item['Video Title']}</h3>
+                    </div>
+                ))}
             </div>
         </div>
     )
-}
-
-const VideosList = () => {
-    return <>
-        <div className="sm:max-w-[800px]">
-            <div className="relative w-full aspect-video border p-4 rounded-lg flex flex-col justify-between">
-                <iframe
-                    className="w-full h-full"
-                    src="https://www.youtube.com/embed/By9wCB9IZp0"
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                />
-                <h3 className="mt-4">Lorem ipsum dolor sit.</h3>
-            </div>
-        </div>
-
-    </>
 }
