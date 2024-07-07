@@ -159,8 +159,6 @@ footer {
 }
 
 .hero-section-blur {
-  background-color: rgba(0, 0, 0, 0.1);
-  background-image: url("https://picsum.photos/800/340");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
