@@ -1,8 +1,24 @@
 "use client"
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Link from "next/link";
 import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default () => {
+    const [Videos, setVideos] = useState([]);
+    useEffect(() => {
+        let GetVideos = async () => {
+            let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Home.php", { params: { GetYTVideo: true } });
+            response = response.data;
+            if (response.length > 0) {
+                setVideos(response);
+            } else {
+
+            }
+        }
+        GetVideos();
+    }, []);
     return (
         <>
             <div>
@@ -26,46 +42,33 @@ export default () => {
                     },
                 }}
                 loop={true}
-                centerInsufficientSlides={true}
                 autoplay={{ delay: 1000 }}
                 pagination={{ clickable: true }}
             >
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-                {Slides()}
-
+                {Videos.map((Item) => (
+                    <>
+                        <SwiperSlide>
+                            <Link href={Item['Link']} target="_blank">
+                                <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10">
+                                    <img
+                                        src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                                        alt="Card Image"
+                                        width={500}
+                                        height={300}
+                                        className="w-full aspect-[5/3] object-cover rounded-lg"
+                                    />
+                                    <div className="p-4 bg-background">
+                                        <h3 className="text-xl font-bold mb-2">{Item['Title']}</h3>
+                                        <p className="text-muted-foreground">
+                                            {Item.Description}
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+                        </SwiperSlide>
+                    </>
+                ))}
             </Swiper>
         </>
     );
 };
-
-const Slides = () => {
-    return <>
-        <SwiperSlide>
-            <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10">
-                <img
-                    src="https://picsum.photos/800/370"
-                    alt="Card Image"
-                    width={500}
-                    height={300}
-                    className="w-full aspect-[5/3] object-cover rounded-lg"
-                />
-                <div className="p-4 bg-background">
-                    <h3 className="text-xl font-bold mb-2">Card Title</h3>
-                    <p className="text-muted-foreground">
-                        This is a description of the card content. It should be a bit longer than the title to demonstrate the layout.
-                    </p>
-                </div>
-            </div>
-        </SwiperSlide>
-    </>
-}

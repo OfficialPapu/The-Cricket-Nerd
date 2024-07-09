@@ -1,5 +1,6 @@
 "use client"
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react"
 
 export default function Videos() {
@@ -18,7 +19,7 @@ export default function Videos() {
     }, []);
 
     return (
-        <div className="w-full max-w-[85rem] mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold mb-2">Our YouTube Channel</h1>
                 <p className="text-muted-foreground">
@@ -26,12 +27,25 @@ export default function Videos() {
                     tutorials to industry insights.
                 </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden place-items-center">
                 {Videos.map((Item, index) => (
-                    <div className="border p-4 rounded-lg flex flex-col justify-between" key={index}>
-                        <div className="video-container" dangerouslySetInnerHTML={{ __html: Item.Iframe }} />
-                        <h3 className="mt-4">{Item['Video Title']}</h3>
+                    <Link href={Item['Link']} target="_blank">
+                    <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10">
+                        <img
+                           src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                            alt="Card Image"
+                            width={500}
+                            height={300}
+                            className="w-full aspect-[5/3] object-cover rounded-lg"
+                        />
+                        <div className="p-4 bg-background">
+                            <h3 className="text-xl font-bold mb-2">{Item['Title']}</h3>
+                            <p className="text-muted-foreground">
+                            {Item.Description}
+                            </p>
+                        </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>

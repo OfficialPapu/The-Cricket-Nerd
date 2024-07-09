@@ -1,13 +1,42 @@
-import React from 'react'
+"use client"
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
-const Stats = () => {
+const Stats = ({ params }) => {
+    const [statsData, setStatsData] = useState(null);
+    const playerID = params.Stats;
+
+    useEffect(() => {
+        const fetchStats = async () => {
+            try {
+                const response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Statistics.php", {
+                    params: {
+                        FetchStats: true,
+                        PlayerID: playerID,
+                    }
+                });
+                if (response.data.length > 0) {
+                    setStatsData(response.data[0]);
+                } else {
+                }
+            } catch (error) {
+                console.error('Error fetching player stats:', error);
+            }
+        };
+        fetchStats();
+    }, [playerID]);
+
+    if (!statsData) {
+        return <p>Loading...</p>;
+    }
+
     return (
         <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
             <div>
                 <div className="flex flex-col items-center justify-start">
                     <div className="relative w-64 h-64 rounded-full overflow-hidden">
                         <img
-                            src="https://images8.alphacoders.com/413/413481.jpg"
+                            src={`http://localhost/The Cricket Nerd/API/POST/${statsData['Player Photo']}`}
                             alt="Player Image"
                             width={300}
                             height={300}
@@ -16,8 +45,7 @@ const Stats = () => {
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                         </div>
                     </div>
-                    <h1 className="text-4xl font-bold">Virat Kohli</h1>
-                    <p className="text-lg text-muted-foreground mt-4">Indian Cricket Player</p>
+                    <h1 className="text-4xl my-4 font-bold">{statsData['Player Name']}</h1>
                 </div>
                 <div className="grid gap-8">
                     <div className="grid gap-4">
@@ -28,31 +56,31 @@ const Stats = () => {
                                 <div className="grid gap-3 text-muted-foreground mt-4">
                                     <div className="flex justify-between">
                                         <span>Innings</span>
-                                        <span>265</span>
+                                        <span>{statsData.ODI_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Runs</span>
-                                        <span>12,169</span>
+                                        <span>{statsData.ODI_Run_Scored}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Average</span>
-                                        <span>59.12</span>
+                                        <span>{statsData.ODI_Batting_Average}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Strike Rate</span>
-                                        <span>93.25</span>
+                                        <span>{statsData.ODI_Strike_Rate}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Half Centuries</span>
-                                        <span>58</span>
+                                        <span>{statsData.ODI_Half_Centuries}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Centuries</span>
-                                        <span>43</span>
+                                        <span>{statsData.ODI_Centuries}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Highest Score</span>
-                                        <span>183</span>
+                                        <span>{statsData.ODI_Highest_Score}</span>
                                     </div>
                                 </div>
                             </div>
@@ -61,31 +89,31 @@ const Stats = () => {
                                 <div className="grid gap-3 text-muted-foreground mt-4">
                                     <div className="flex justify-between">
                                         <span>Innings</span>
-                                        <span>90</span>
+                                        <span>{statsData.T20_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Runs</span>
-                                        <span>3,296</span>
+                                        <span>{statsData.T20_Run_Scored}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Average</span>
-                                        <span>50.71</span>
+                                        <span>{statsData.T20_Batting_Average}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Strike Rate</span>
-                                        <span>137.67</span>
+                                        <span>{statsData.T20_Strike_Rate}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Half Centuries</span>
-                                        <span>28</span>
+                                        <span>{statsData.T20_Half_Centuries}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Centuries</span>
-                                        <span>1</span>
+                                        <span>{statsData.T20_Centuries}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Highest Score</span>
-                                        <span>122*</span>
+                                        <span>{statsData.T20_Highest_Score}</span>
                                     </div>
                                 </div>
                             </div>
@@ -99,32 +127,25 @@ const Stats = () => {
                                 <div className="grid gap-3 text-muted-foreground mt-4">
                                     <div className="flex justify-between">
                                         <span>Matches</span>
-                                        <span>0</span>
+                                        <span>{statsData.ODI_Matches}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Innings</span>
-                                        <span>0</span>
+                                        <span>{statsData.ODI_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Wickets</span>
-                                        <span>0</span>
+                                        <span>{statsData.ODI_Wickets_Taken}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Average</span>
-                                        <span>-</span>
+                                        <span>{statsData.ODI_Batting_Average}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Economy</span>
-                                        <span>-</span>
+                                        <span>{statsData.ODI_Bowling_Economy}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span>Best Bowling</span>
-                                        <span>-</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>5-Wicket Hauls</span>
-                                        <span>0</span>
-                                    </div>
+
                                 </div>
                             </div>
                             <div className="bg-card p-6 rounded-lg shadow-md">
@@ -132,32 +153,25 @@ const Stats = () => {
                                 <div className="grid gap-3 text-muted-foreground mt-4">
                                     <div className="flex justify-between">
                                         <span>Matches</span>
-                                        <span>0</span>
+                                        <span>{statsData.T20_Matches}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Innings</span>
-                                        <span>0</span>
+                                        <span>{statsData.T20_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Wickets</span>
-                                        <span>0</span>
+                                        <span>{statsData.T20_Wickets_Taken}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Average</span>
-                                        <span>-</span>
+                                        <span>{statsData.T20_Batting_Average}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Economy</span>
-                                        <span>-</span>
+                                        <span>{statsData.T20_Bowling_Economy}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span>Best Bowling</span>
-                                        <span>-</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span>5-Wicket Hauls</span>
-                                        <span>0</span>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -165,7 +179,7 @@ const Stats = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Stats;
