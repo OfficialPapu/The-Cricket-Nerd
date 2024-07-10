@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import Link from "next/link"
 import axios from 'axios';
 const Statistics = () => {
+    const API_STATISTICS = process.env.NEXT_PUBLIC_API_STATISTICS;
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
     const [AllPlayers, setAllPlayers] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Statistics.php", { params: { Statistics: true } });
+                let response = await axios.get(API_STATISTICS, { params: { Statistics: true } });
                 response = response.data;
                 console.log(response);
                 if (response.length > 0) {
@@ -26,7 +28,7 @@ const Statistics = () => {
                 <div className="container mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-4">
                         <div className="bg-primary rounded-full w-12 h-12 flex items-center justify-center">
-                            <img src="Flags/1x1/np.svg" alt="" />
+                            <img src="Images/Flags/np.svg" />
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold">Nepal</h1>
@@ -50,7 +52,7 @@ const Statistics = () => {
                         <>
                             <Link href={`Statistics/${Item['ID']}`}><div className="bg-card rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl relative">
                                 <div className="p-6">
-                                    <img src={`http://localhost/The Cricket Nerd/API/POST/${Item['Player Photo']}`} className='absolute top-4 right-4 rounded-lg object-contain h-[50px]' width={70} />
+                                    <img src={`${API_BASE_URL + Item['Player Photo']}`} className='absolute top-4 right-4 rounded-lg object-contain h-[50px]' width={70} />
                                     <h3 className="text-lg font-bold">{Item['Player Name']}</h3>
                                     <div className="text-muted-foreground text-sm">{Item['Player Role']}</div>
                                     <div className="mt-4 text-sm">

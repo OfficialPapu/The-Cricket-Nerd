@@ -5,12 +5,12 @@ import { PiCaretDoubleRightThin } from "react-icons/pi";
 import Link from 'next/link';
 
 const Match = () => {
-
+    const API_HOME = process.env.NEXT_PUBLIC_API_HOME;
     const [MatcheData, setMatcheData] = useState([]);
 
     useEffect(() => {
         let GetMatches = async () => {
-            let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Home.php", { params: { LatestMatches: true } });
+            let response = await axios.get(API_HOME, { params: { LatestMatches: true } });
             response = response.data;
             if (response.length > 0) {
                 setMatcheData(response);
@@ -42,12 +42,12 @@ const Match = () => {
                                     <h2>{match['Tournament Name']}</h2>
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
-                                            <img src={`/Flags/1x1/${match['FlagA']}.svg`} className="w-[40px] object-contain" />
+                                            <img src={`/Images/Flags/${match['FlagA']}.svg`} className="w-[40px] object-contain" />
                                             <span className="font-medium">{match['Country A']}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <span className="font-medium">{match['Country B']}</span>
-                                            <img src={`/Flags/1x1/${match['FlagB']}.svg`} className="object-contain w-[40px]" />
+                                            <img src={`/Images/Flags/${match['FlagB']}.svg`} className="object-contain w-[40px]" />
                                         </div>
                                     </div>
                                     <div className="flex flex-col items-start justify-between gap-2">

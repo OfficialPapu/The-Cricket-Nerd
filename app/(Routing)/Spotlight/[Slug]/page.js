@@ -3,13 +3,16 @@ import axios from "axios";
 import RelatedNews from "../Related News";
 import { useEffect, useState } from "react";
 const Spotlight = ({ params }) => {
+  const API_NEWS = process.env.NEXT_PUBLIC_API_NEWS;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   let Slug = params.Slug;
   useEffect(() => {
     FetchSpotLightData();
   }, [])
   const [SpotlightData, setSpotlightData] = useState([]);
   const FetchSpotLightData = async () => {
-    let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/News.php", {
+    let response = await axios.get(API_NEWS, {
       params: {
         FetchNewsDetails: true,
         Slug: Slug,
@@ -29,7 +32,7 @@ const Spotlight = ({ params }) => {
           <div className="flex justify-center">
             {SpotlightData.map((Item) => (
               <>
-                <img src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                <img src={`${API_BASE_URL + Item.Thumbnail}`}
                   width={800}
                   alt="Featured Image"
                   className="w-full h-[200px] md:h-[400px] rounded-lg object-cover"

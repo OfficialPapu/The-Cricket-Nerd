@@ -4,6 +4,8 @@ import Link from "next/link"
 import { useEffect, useState } from "react";
 
 const CurrentEvents = () => {
+  const API_NEWS = process.env.NEXT_PUBLIC_API_NEWS;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [NewsData, setNewsData] = useState([]);
 
   useEffect(() => {
@@ -11,7 +13,7 @@ const CurrentEvents = () => {
   }, []);
 
   const GetData = async () => {
-    let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/News.php",{params:{CurrentEvents:true,}})
+    let response = await axios.get(API_NEWS, { params: { CurrentEvents: true, } })
     setNewsData(response.data);
   };
   return (
@@ -25,14 +27,14 @@ const CurrentEvents = () => {
             {NewsData.length > 0 && (
               <>
                 <img
-                  src={`http://localhost/The Cricket Nerd/API/POST/${NewsData[0].Thumbnail}`}
+                  src={`${API_BASE_URL + NewsData[0].Thumbnail}`}
                   width={500}
                   alt="{NewsData[0].Title}"
                   className="aspect-[7/4] w-full rounded-lg object-cover"
                 />
                 <div className="mt-4 space-y-2">
-                 <Link href={`Spotlight/${NewsData[0]['Slug Url']}`}> <h1 className="text-3xl font-bold md:text-4xl">{TruncateText(NewsData[0].Title, 100)}
-                 </h1></Link>
+                  <Link href={`Spotlight/${NewsData[0]['Slug Url']}`}> <h1 className="text-3xl font-bold md:text-4xl">{TruncateText(NewsData[0].Title, 100)}
+                  </h1></Link>
                   <p className="text-muted-foreground">
                     {TruncateText(NewsData[0].Description, 200)}
                   </p>
@@ -89,21 +91,21 @@ const CurrentEvents = () => {
               <div className="mt-4 space-y-4">
 
                 {NewsData.slice(1).map((Item, Index) => (
-                    <Link key={Index} href={`Spotlight/${Item['Slug Url']}`} className="grid grid-cols-[100px_1fr] items-center gap-4 rounded-lg border bg-card p-4">
-                      <img
-                        src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
-                        width={100}
-                        height={100}
-                        className="aspect-square rounded-lg object-cover"
-                        alt="Trending News"
-                      />
-                      <div>
-                        <h3 className="text-sm font-medium">{TruncateText(Item.Description, 30)}</h3>
-                        <p className="mt-1 text-xs text-muted-foreground">
-                         {TruncateText(Item.Description, 100)}
-                        </p>
-                      </div>
-                    </Link>
+                  <Link key={Index} href={`Spotlight/${Item['Slug Url']}`} className="grid grid-cols-[100px_1fr] items-center gap-4 rounded-lg border bg-card p-4">
+                    <img
+                      src={`${API_BASE_URL + Item.Thumbnail}`}
+                      width={100}
+                      height={100}
+                      className="aspect-square rounded-lg object-cover"
+                      alt="Trending News"
+                    />
+                    <div>
+                      <h3 className="text-sm font-medium">{TruncateText(Item.Description, 30)}</h3>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {TruncateText(Item.Description, 100)}
+                      </p>
+                    </div>
+                  </Link>
                 ))}
 
               </div>
@@ -119,7 +121,7 @@ const CurrentEvents = () => {
 export default CurrentEvents;
 const TruncateText = (text, maxLength) => {
   if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
+    return text.substring(0, maxLength) + "...";
   }
   return text;
 };

@@ -3,11 +3,13 @@ import Link from "next/link"
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 const RelatedNews = () => {
+    const API_NEWS = process.env.NEXT_PUBLIC_API_NEWS;
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
     const [RelatedNews, setRelatedNews] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/News.php", { params: { RelatedNews: true } });
+                let response = await axios.get(API_NEWS, { params: { RelatedNews: true } });
                 response = response.data;
                 if (response.length > 0) {
                     setRelatedNews(response);
@@ -28,7 +30,7 @@ const RelatedNews = () => {
                         <div className="w-full max-w-md border p-4 rounded-lg">
                             <Link href={Item['Slug Url']} className="group block overflow-hidden rounded-lg">
                                 <img
-                                    src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                                    src={`${API_BASE_URL + Item.Thumbnail}`}
                                     alt="Related News"
                                     width={400}
                                     height={200}

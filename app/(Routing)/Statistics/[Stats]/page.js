@@ -7,9 +7,11 @@ const Stats = ({ params }) => {
     const playerID = params.Stats;
 
     useEffect(() => {
+        const API_STATISTICS = process.env.NEXT_PUBLIC_API_STATISTICS;
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
         const fetchStats = async () => {
             try {
-                const response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Statistics.php", {
+                const response = await axios.get(API_STATISTICS, {
                     params: {
                         FetchStats: true,
                         PlayerID: playerID,
@@ -36,7 +38,7 @@ const Stats = ({ params }) => {
                 <div className="flex flex-col items-center justify-start">
                     <div className="relative w-64 h-64 rounded-full overflow-hidden">
                         <img
-                            src={`http://localhost/The Cricket Nerd/API/POST/${statsData['Player Photo']}`}
+                            src={`${API_BASE_URL + statsData['Player Photo']}`}
                             alt="Player Image"
                             width={300}
                             height={300}

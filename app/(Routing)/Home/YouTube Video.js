@@ -6,10 +6,12 @@ import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default () => {
+    const API_HOME = process.env.NEXT_PUBLIC_API_HOME;
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
     const [Videos, setVideos] = useState([]);
     useEffect(() => {
         let GetVideos = async () => {
-            let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Home.php", { params: { GetYTVideo: true } });
+            let response = await axios.get(API_HOME, { params: { GetYTVideo: true } });
             response = response.data;
             if (response.length > 0) {
                 setVideos(response);
@@ -51,16 +53,16 @@ export default () => {
                             <Link href={Item['Link']} target="_blank">
                                 <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10">
                                     <img
-                                        src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                                        src={`${API_BASE_URL + Item.Thumbnail}`}
                                         alt="Card Image"
                                         width={500}
                                         height={300}
                                         className="w-full aspect-[5/3] object-cover rounded-lg"
                                     />
                                     <div className="p-4 bg-background">
-                                        <h3 className="text-xl font-bold mb-2">{Item['Title']}</h3>
+                                        <h3 className="text-xl font-bold mb-2">{TruncateText(Item.Title, 40)}</h3>
                                         <p className="text-muted-foreground">
-                                            {Item.Description}
+                                            {TruncateText(Item.Description, 100)}
                                         </p>
                                     </div>
                                 </div>
@@ -71,4 +73,11 @@ export default () => {
             </Swiper>
         </>
     );
+};
+
+const TruncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + "...";
+    }
+    return text;
 };

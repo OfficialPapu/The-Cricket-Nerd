@@ -2,15 +2,17 @@
 import axios from "axios";
 import Link from "next/link"
 import { useEffect, useState } from "react";
-const LatestNews = () => {
-    const [NewsData, setNewsData] = useState([]);
 
+const LatestNews = () => {
+    const API_HOME = process.env.NEXT_PUBLIC_API_HOME;
+    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const [NewsData, setNewsData] = useState([]);
     useEffect(() => {
         GetData();
     }, []);
 
     const GetData = async () => {
-        let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/Home.php", { params: { LatestNews: true, } })
+        let response = await axios.get(API_HOME, { params: { LatestNews: true, } })
         setNewsData(response.data);
     };
     return <>
@@ -24,7 +26,7 @@ const LatestNews = () => {
                         {NewsData.slice(0, 1).map((Item) => (
                             <>
                                 <img
-                                    src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                                    src={`${API_BASE_URL + Item.Thumbnail}`}
                                     width="550"
                                     height="310"
                                     alt="Latest News"
@@ -53,7 +55,7 @@ const LatestNews = () => {
                             <>
                                 <div className="group flex items-center gap-4 rounded-2xl shadow-lg bg-card py-8 px-6 transition-colors hover:bg-muted">
                                     <img
-                                        src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                                        src={`${API_BASE_URL + Item.Thumbnail}`}
                                         width="150"
                                         height="150" className="aspect-square w-36 overflow-hidden rounded-lg object-cover object-center transition-all duration-300 group-hover:scale-105" />
                                     <div className="space-y-1">

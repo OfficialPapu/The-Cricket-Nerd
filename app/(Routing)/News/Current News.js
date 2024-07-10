@@ -3,12 +3,14 @@ import axios from "axios";
 import Link from "next/link"
 import { useEffect, useState } from "react";
 const CurrentNews = () => {
+  const API_NEWS = process.env.NEXT_PUBLIC_API_NEWS;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [AllNews, setAllNews] = useState([]);
   useEffect(() => {
     ListAllNews();
   }, []);
   const ListAllNews = async () => {
-    let response = await axios.get("http://localhost/The Cricket Nerd/API/GET/News.php", { params: { ListAllNews: true } })
+    let response = await axios.get(API_NEWS, { params: { ListAllNews: true } })
     setAllNews(response.data);
   }
   return (
@@ -22,17 +24,17 @@ const CurrentNews = () => {
                 href={`Spotlight/${Item['Slug Url']}`}
                 className="group grid gap-4 rounded-lg border bg-card p-4 transition-colors hover:bg-muted">
                 <img
-                  src={`http://localhost/The Cricket Nerd/API/POST/${Item.Thumbnail}`}
+                   src={`${API_BASE_URL + Item.Thumbnail}`}
                   width={300}
                   height={200}
                   alt="News Article"
                   className="aspect-[3/2] w-full rounded-lg object-cover" />
                 <div>
                   <h2 className="text-lg font-bold group-hover:underline">
-                  {TruncateText(Item.Description, 50)}
+                    {TruncateText(Item.Description, 50)}
                   </h2>
                   <p className="mt-2 text-muted-foreground">
-                  {TruncateText(Item.Description, 100)}
+                    {TruncateText(Item.Description, 100)}
                   </p>
                 </div>
               </Link>
@@ -49,7 +51,7 @@ export default CurrentNews;
 
 const TruncateText = (text, maxLength) => {
   if (text.length > maxLength) {
-      return text.substring(0, maxLength) + "...";
+    return text.substring(0, maxLength) + "...";
   }
   return text;
 };
