@@ -50,7 +50,7 @@ export default function Navbar() {
             <Link href="/News">News</Link>
           </li>
           <li>
-            <Link href="/Match">Match</Link>
+            <Link href="/Matches">Matches</Link>
           </li>
           <li>
             <Link href="/Videos">Videos</Link>

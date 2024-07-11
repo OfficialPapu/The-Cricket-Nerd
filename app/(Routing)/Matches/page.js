@@ -31,12 +31,12 @@ const Match = () => {
                                     <h2>{match['Tournament Name']}</h2>
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-2">
-                                            <img src={`/Images/Flags/${match['FlagA']}.svg`} className="w-[40px] object-contain" />
+                                            <img src={`/Images/Flags/${match['FlagA']}`} className="w-[40px] object-contain" />
                                             <span className="font-medium">{match['Country A']}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <span className="font-medium">{match['Country B']}</span>
-                                            <img src={`/Images/Flags/${match['FlagB']}.svg`} className="object-contain w-[40px]" />
+                                            <img src={`/Images/Flags/${match['FlagB']}`} className="object-contain w-[40px]" />
                                         </div>
                                     </div>
                                     <div className="flex flex-col items-start justify-between gap-2">
