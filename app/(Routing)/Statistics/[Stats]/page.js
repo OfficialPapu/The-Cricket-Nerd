@@ -4,17 +4,17 @@ import React, { useEffect, useState } from 'react';
 
 const Stats = ({ params }) => {
     const [statsData, setStatsData] = useState(null);
-    const playerID = params.Stats;
-
-    useEffect(() => {
+    const SlugUrl = params.Stats;
+    
         const API_STATISTICS = process.env.NEXT_PUBLIC_API_STATISTICS;
         const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+    useEffect(() => {
         const fetchStats = async () => {
             try {
                 const response = await axios.get(API_STATISTICS, {
                     params: {
                         FetchStats: true,
-                        PlayerID: playerID,
+                        SlugUrl: SlugUrl,
                     }
                 });
                 if (response.data.length > 0) {
@@ -26,11 +26,12 @@ const Stats = ({ params }) => {
             }
         };
         fetchStats();
-    }, [playerID]);
+    }, [SlugUrl]);
 
     if (!statsData) {
         return <p>Loading...</p>;
     }
+
 
     return (
         <div className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -44,10 +45,20 @@ const Stats = ({ params }) => {
                             height={300}
                             className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        </div>
                     </div>
                     <h1 className="text-4xl my-4 font-bold">{statsData['Player Name']}</h1>
+            <div class="mb-10 shadow rounded-lg p-6 inline-block">
+        <div className="text-gray-600">
+        <strong>Role:</strong> {statsData['Player Role']}
+        </div>
+
+            <div className="text-gray-600 mt-2">
+                <strong>Bowling Style:</strong> {statsData['Bowling Style']}
+            </div>
+            <div className="text-gray-600 mt-2">
+                <strong>Batting Style:</strong> {statsData['Batting Style']}
+            </div>
+            </div>
                 </div>
                 <div className="grid gap-8">
                     <div className="grid gap-4">
@@ -56,9 +67,13 @@ const Stats = ({ params }) => {
                             <div className="bg-card p-6 rounded-lg shadow-md">
                                 <h3 className="text-xl font-semibold">ODI</h3>
                                 <div className="grid gap-3 text-muted-foreground mt-4">
-                                    <div className="flex justify-between">
-                                        <span>Innings</span>
-                                        <span>{statsData.ODI_Innings}</span>
+                                  <div className="flex justify-between">
+                                        <span>Matches</span>
+                                        <span>{statsData.ODI_Matches}</span>
+                                    </div>
+                                      <div className="flex justify-between">
+                                        <span>Batting Innings</span>
+                                        <span>{statsData.ODI_Batting_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Runs</span>
@@ -68,6 +83,7 @@ const Stats = ({ params }) => {
                                         <span>Average</span>
                                         <span>{statsData.ODI_Batting_Average}</span>
                                     </div>
+
                                     <div className="flex justify-between">
                                         <span>Strike Rate</span>
                                         <span>{statsData.ODI_Strike_Rate}</span>
@@ -87,11 +103,15 @@ const Stats = ({ params }) => {
                                 </div>
                             </div>
                             <div className="bg-card p-6 rounded-lg shadow-md">
-                                <h3 className="text-xl font-semibold">T20</h3>
+                                <h3 className="text-xl font-semibold">T20I</h3>
                                 <div className="grid gap-3 text-muted-foreground mt-4">
-                                    <div className="flex justify-between">
-                                        <span>Innings</span>
-                                        <span>{statsData.T20_Innings}</span>
+                                     <div className="flex justify-between">
+                                        <span>Matches</span>
+                                        <span>{statsData.T20_Matches}</span>
+                                    </div>
+                                     <div className="flex justify-between">
+                                        <span>Batting Innings</span>
+                                        <span>{statsData.T20_Batting_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Runs</span>
@@ -101,6 +121,7 @@ const Stats = ({ params }) => {
                                         <span>Average</span>
                                         <span>{statsData.T20_Batting_Average}</span>
                                     </div>
+                                    
                                     <div className="flex justify-between">
                                         <span>Strike Rate</span>
                                         <span>{statsData.T20_Strike_Rate}</span>
@@ -127,53 +148,55 @@ const Stats = ({ params }) => {
                             <div className="bg-card p-6 rounded-lg shadow-md">
                                 <h3 className="text-xl font-semibold">ODI</h3>
                                 <div className="grid gap-3 text-muted-foreground mt-4">
+                                 
                                     <div className="flex justify-between">
                                         <span>Matches</span>
                                         <span>{statsData.ODI_Matches}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span>Innings</span>
-                                        <span>{statsData.ODI_Innings}</span>
+                                   <div className="flex justify-between">
+                                        <span>Bowlings Innings</span>
+                                        <span>{statsData.ODI_Bowlings_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Wickets</span>
                                         <span>{statsData.ODI_Wickets_Taken}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span>Average</span>
-                                        <span>{statsData.ODI_Batting_Average}</span>
-                                    </div>
+                                    
                                     <div className="flex justify-between">
                                         <span>Economy</span>
                                         <span>{statsData.ODI_Bowling_Economy}</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span>Best Bowling</span>
+                                        <span>{statsData.ODI_Best_Bowling}</span>
                                     </div>
 
                                 </div>
                             </div>
                             <div className="bg-card p-6 rounded-lg shadow-md">
-                                <h3 className="text-xl font-semibold">T20</h3>
+                                <h3 className="text-xl font-semibold">T20I</h3>
                                 <div className="grid gap-3 text-muted-foreground mt-4">
                                     <div className="flex justify-between">
                                         <span>Matches</span>
                                         <span>{statsData.T20_Matches}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span>Innings</span>
-                                        <span>{statsData.T20_Innings}</span>
+                                     <div className="flex justify-between">
+                                        <span>Bowlings Innings</span>
+                                        <span>{statsData.T20_Bowlings_Innings}</span>
                                     </div>
                                     <div className="flex justify-between">
                                         <span>Wickets</span>
                                         <span>{statsData.T20_Wickets_Taken}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span>Average</span>
-                                        <span>{statsData.T20_Batting_Average}</span>
-                                    </div>
+                    
                                     <div className="flex justify-between">
                                         <span>Economy</span>
                                         <span>{statsData.T20_Bowling_Economy}</span>
                                     </div>
-
+                                        <div className="flex justify-between">
+                                        <span>Best Bowling</span>
+                                        <span>{statsData.T20_Best_Bowling}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

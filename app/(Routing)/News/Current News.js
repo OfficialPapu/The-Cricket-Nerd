@@ -31,7 +31,7 @@ const CurrentNews = () => {
                   className="aspect-[3/2] w-full rounded-lg object-cover" />
                 <div>
                   <h2 className="text-lg font-bold group-hover:underline">
-                    {TruncateText(Item.Description, 50)}
+                    {TruncateText(Item.Title, 50)}
                   </h2>
                   <p className="mt-2 text-muted-foreground">
                     {TruncateText(Item.Description, 100)}

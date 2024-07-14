@@ -24,7 +24,7 @@ export default () => {
     return (
         <>
             <div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground justify-start text-center underline mb-10">Latest Videos</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground justify-start text-center underline mb-10">LATEST VIDEOS</h2>
             </div>
             <Swiper
                 modules={[Navigation, Pagination, Scrollbar, Autoplay]}
@@ -51,7 +51,7 @@ export default () => {
                     <>
                         <SwiperSlide>
                             <Link href={Item['Link']} target="_blank">
-                                <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10">
+                                <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10 h-[406px]">
                                     <img
                                         src={`${API_BASE_URL + Item.Thumbnail}`}
                                         alt="Card Image"

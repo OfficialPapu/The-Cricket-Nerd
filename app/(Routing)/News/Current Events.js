@@ -100,7 +100,7 @@ const CurrentEvents = () => {
                       alt="Trending News"
                     />
                     <div>
-                      <h3 className="text-sm font-medium">{TruncateText(Item.Description, 30)}</h3>
+                      <h3 className="text-sm font-medium">{TruncateText(Item.Title, 30)}</h3>
                       <p className="mt-1 text-xs text-muted-foreground">
                         {TruncateText(Item.Description, 100)}
                       </p>

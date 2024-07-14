@@ -23,16 +23,15 @@ export default function Videos() {
     return (
         <div className="mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold mb-2">Our YouTube Channel</h1>
+                <h1 className="text-3xl font-bold mb-2">OUR YOUTUBE CHANNEL</h1>
                 <p className="text-muted-foreground">
-                    Check out all the latest videos from our YouTube channel, covering a wide range of topics from product
-                    tutorials to industry insights.
+                    Check out all the latest videos from our YouTube channel, covering on and off the field of Nepal Cricket.
                 </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden place-items-center">
                 {Videos.map((Item, index) => (
                     <Link href={Item['Link']} target="_blank">
-                    <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10">
+                    <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10 h-[405px]">
                         <img
                            src={`${API_BASE_URL + Item.Thumbnail}`}
                             alt="Card Image"

@@ -23,14 +23,10 @@ const Match = () => {
 
   return (
     <div>
-      <section className="bg-background pt-6 md:pt-10 mb-10 flex justify-center">
+      <section className="bg-background md:pt-4 mb-10 flex justify-center">
         <div className="container px-4 md:px-6">
-          <div className="mb-6 md:mb-6">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">MATCHES</h2>
-          </div>
-
           <div className="flex items-center justify-between mb-2 p-3 rounded-lg border">
-            <h3 className="text-lg font-medium">ALL UPCOMING MATCHES</h3>
+            <h3 className="text-lg font-bold">Asia Cup</h3>
             <Link href="./Matches">
               <button className="flex items-center gap-2">
                 <span>View All</span>

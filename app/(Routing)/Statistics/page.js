@@ -32,14 +32,21 @@ const Statistics = () => {
                         </div>
                         <div>
                             <h1 className="text-2xl font-bold">Nepal</h1>
-                            <div className="text-muted-foreground text-sm">
-                                Rank: <span className="font-medium">1</span>
+                            <div className="text-muted-foreground text-sm mt-2">
+                                FORMAT: <span className="font-medium">T20I</span>
                                 <span className="mx-2">|</span>
-                                Matches: <span className="font-medium">50</span>
+                                RANK: <span className="font-medium">17</span>
                                 <span className="mx-2">|</span>
-                                Wins: <span className="font-medium">40</span>
+                                POINTS: <span className="font-medium">169</span>
+                                
+                            </div>
+                            <div className="text-muted-foreground text-sm mt-1">
+                                FORMAT: <span className="font-medium">ODI</span>
                                 <span className="mx-2">|</span>
-                                Losses: <span className="font-medium">10</span>
+                                RANK: <span className="font-medium">17</span>
+                                <span className="mx-2">|</span>
+                                POINTS: <span className="font-medium">31</span>
+                                
                             </div>
                         </div>
                     </div>
@@ -50,7 +57,7 @@ const Statistics = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
                     {AllPlayers.map((Item) => (
                         <>
-                            <Link href={`Statistics/${Item['ID']}`}><div className="bg-card rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl relative">
+                            <Link href={`Statistics/${Item['Slug Url']}`}><div className="bg-card rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl relative">
                                 <div className="p-6">
                                     <img src={`${API_BASE_URL + Item['Player Photo']}`} className='absolute top-4 right-4 rounded-lg object-contain h-[50px]' width={70} />
                                     <h3 className="text-lg font-bold">{Item['Player Name']}</h3>
@@ -65,7 +72,7 @@ const Statistics = () => {
                                     </div>
                                     <div className="mt-4 text-sm">
                                         <div>
-                                            <p className='font-bold'>T20</p>
+                                            <p className='font-bold'>T20I</p>
                                         </div>
                                         Batting Average: <span className="font-medium">{Item['T20BattingAverage']}</span>
                                         <span className="mx-2">|</span>
