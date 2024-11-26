@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import RelatedNews from "../Related News";
 import Head from "next/head";
 
@@ -26,7 +26,7 @@ const Spotlight = ({ spotlightData, API_BASE_URL }) => {
           <div className="flex justify-center">
             {spotlightData.map((Item) => (
               <img
-                key={Item.id}
+                key={Item['ID']}
                 src={`${API_BASE_URL + Item.Thumbnail}`}
                 width={800}
                 alt="Featured Image"
@@ -36,7 +36,7 @@ const Spotlight = ({ spotlightData, API_BASE_URL }) => {
           </div>
           <div className="flex flex-col items-start space-y-4">
             {spotlightData.map((Item) => (
-              <div key={Item.id}>
+              <div key={Item['ID']}>
                 <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm font-medium text-primary-foreground">
                   Cricket
                 </div>
@@ -58,7 +58,7 @@ const Spotlight = ({ spotlightData, API_BASE_URL }) => {
         <section className="w-full px-4 md:px-10">
           {spotlightData.map((Item) => (
             <div
-              key={Item.id}
+            key={Item['ID']}
               dangerouslySetInnerHTML={{
                 __html: Item.Description.replace(/\n/g, '<br />'),
               }}

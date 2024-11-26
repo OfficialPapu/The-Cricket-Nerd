@@ -49,7 +49,7 @@ const Match = () => {
               const formattedTime = format(time, 'hh:mm a');
 
               return (
-              <a href={match['Link']}>
+                <a href={match['Link']} key={match['ID']}>
                 <div className="bg-card rounded-lg border border-muted p-4 flex flex-col gap-6">
                   <h2>{match['Tournament Name']}</h2>
                   <div className="flex items-center justify-between">

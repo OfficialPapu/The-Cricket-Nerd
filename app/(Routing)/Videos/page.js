@@ -29,8 +29,8 @@ export default function Videos() {
                 </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden place-items-center">
-                {Videos.map((Item, index) => (
-                    <Link href={Item['Link']} target="_blank">
+                {Videos.map((Item) => (
+                    <Link href={Item['Link']} target="_blank" key={Item['ID']}>
                     <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10 h-[405px]">
                         <img
                            src={`${API_BASE_URL + Item.Thumbnail}`}

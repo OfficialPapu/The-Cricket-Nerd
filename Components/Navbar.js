@@ -50,7 +50,7 @@ export default function Navbar() {
           data-state={isOpen ? "open" : "closed"}
           onClick={toggleMenu}
         >
-          {isOpen ? <i class='bx bx-x text-5xl text-white' ></i> : <i class='bx bx-menu-alt-right text-4xl text-white'></i>}
+          {isOpen ? <i className='bx bx-x text-5xl text-white' ></i> : <i className='bx bx-menu-alt-right text-4xl text-white'></i>}
         </button>
         <nav className={`Navbar ${isOpen ? 'Active' : ''}`}>
           <ul className="flex flex-col list-none justify-center lg:flex-row lg:gap-9">

@@ -16,8 +16,6 @@ const Match = () => {
             if (response.length > 0) {
                 setMatcheData(response);
             } else {
-                
-                 // Handle no matches case if needed
             }
         };
         GetMatches();
@@ -38,7 +36,7 @@ const Match = () => {
                             const time = parse(timeString, 'HH:mm:ss', new Date());
                             const formattedTime = format(time, 'hh:mm a');
                             return (
-                            <a href={match['Link']}>
+                            <a href={match['Link']} key={match['ID']}>
                                 <div className="bg-card rounded-lg border border-muted p-4 flex flex-col gap-6" key={match['Match ID']}>
                                     <h2>{match['Tournament Name']}</h2>
                                     <div className="flex items-center justify-between">

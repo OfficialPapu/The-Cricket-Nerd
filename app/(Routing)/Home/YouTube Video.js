@@ -47,29 +47,28 @@ export default () => {
                 autoplay={{ delay: 1000 }}
                 pagination={{ clickable: true }}
             >
-                {Videos.map((Item) => (
-                    <>
-                        <SwiperSlide>
-                            <Link href={Item['Link']} target="_blank">
-                                <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10 h-[406px]">
-                                    <img
-                                        src={`${API_BASE_URL + Item.Thumbnail}`}
-                                        alt="Card Image"
-                                        width={500}
-                                        height={300}
-                                        className="w-full aspect-[5/3] object-cover rounded-lg"
-                                    />
-                                    <div className="p-4 bg-background">
-                                        <h3 className="text-xl font-bold mb-2">{TruncateText(Item.Title, 40)}</h3>
-                                        <p className="text-muted-foreground">
-                                            {TruncateText(Item.Description, 100)}
-                                        </p>
-                                    </div>
+                {Videos.map((Item, index) => (
+                    <SwiperSlide key={Item['ID']}>
+                        <Link href={Item['Link']} target="_blank">
+                            <div className="w-full max-w-72 rounded-lg overflow-hidden shadow-lg mx-4 p-4 mb-10 h-[406px]">
+                                <img
+                                    src={`${API_BASE_URL + Item.Thumbnail}`}
+                                    alt="Card Image"
+                                    width={500}
+                                    height={300}
+                                    className="w-full aspect-[5/3] object-cover rounded-lg"
+                                />
+                                <div className="p-4 bg-background">
+                                    <h3 className="text-xl font-bold mb-2">{TruncateText(Item.Title, 40)}</h3>
+                                    <p className="text-muted-foreground">
+                                        {TruncateText(Item.Description, 100)}
+                                    </p>
                                 </div>
-                            </Link>
-                        </SwiperSlide>
-                    </>
+                            </div>
+                        </Link>
+                    </SwiperSlide>
                 ))}
+
             </Swiper>
         </>
     );

@@ -18,27 +18,29 @@ const CurrentNews = () => {
       <main className="container py-12">
         <h2 className="mb-8 text-2xl font-bold text-[#2e3192]">Latest News</h2>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {AllNews.map((Item, Index) => (
-            <>
+          {AllNews.map((Item) => (
               <Link
+              key={Item['ID']}
                 href={`Spotlight/${Item['Slug Url']}`}
                 className="group grid gap-4 rounded-lg border bg-card p-4 transition-colors hover:bg-muted">
                 <img
                    src={`${API_BASE_URL + Item.Thumbnail}`}
                   width={300}
                   height={200}
-                  alt="News Article"
+                  alt={Item['Title']}
                   className="aspect-[3/2] w-full rounded-lg object-cover" />
                 <div>
                   <h2 className="text-lg font-bold group-hover:underline">
                     {TruncateText(Item.Title, 50)}
                   </h2>
-                  <p className="mt-2 text-muted-foreground">
-                    {TruncateText(Item.Description, 100)}
-                  </p>
+                 <p
+                      className="mt-2 text-muted-foreground"
+                      dangerouslySetInnerHTML={{
+                        __html: TruncateText(Item.Description, 200),
+                      }}
+                    ></p>
                 </div>
               </Link>
-            </>
           ))}
         </div>
       </main>

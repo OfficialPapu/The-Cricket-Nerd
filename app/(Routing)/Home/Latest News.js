@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -42,7 +42,7 @@ const formatDate = (dateString) => {
                 <div className="mx-auto grid max-w-7xl items-start gap-10 py-12 lg:grid-cols-2 lg:gap-12">
                     <div className="group block overflow-hidden rounded-2xl shadow-lg">
                         {NewsData.slice(0, 1).map((Item) => (
-                            <div key={Item['Slug Url']}>
+                            <div key={Item['ID']}>
                                 <Link href={`/Spotlight/${Item['Slug Url']}`}>
                                     <img
                                         src={`${API_BASE_URL + Item.Thumbnail}`}
@@ -56,9 +56,12 @@ const formatDate = (dateString) => {
                                         <h3 className="text-2xl font-bold text-card-foreground">
                                             {TruncateText(Item['Title'], 90)}
                                         </h3>
-                                        <p className="text-card-foreground">
-                                            {TruncateText(Item['Description'], 231)}
-                                        </p>
+                                        <p
+                                          className="text-card-foreground"
+                                          dangerouslySetInnerHTML={{
+                                            __html: TruncateText(Item['Description'], 231),
+                                          }}
+                                        ></p>
                                         <button variant="outline" className="mt-2 border p-2 rounded-lg font-500 hover:bg-gray-50 duration-300">
                                             Read More
                                         </button>
@@ -69,8 +72,8 @@ const formatDate = (dateString) => {
                     </div>
                     <div className="grid gap-4">
                         {NewsData.slice(1).map((Item) => (
-                        <Link href={`/Spotlight/${Item['Slug Url']}`}>
-                            <div key={Item['Slug Url']} className="group flex items-center gap-4 rounded-2xl shadow-lg bg-card py-8 px-6 transition-colors hover:bg-muted">
+                        <Link href={`/Spotlight/${Item['Slug Url']}`} key={`${Item['ID']}`}>
+                            <div className="group flex items-center gap-4 rounded-2xl shadow-lg bg-card py-8 px-6 transition-colors hover:bg-muted">
                                 <img
                                     src={`${API_BASE_URL + Item.Thumbnail}`}
                                     width="150"
@@ -79,9 +82,12 @@ const formatDate = (dateString) => {
                                 />
                                 <div className="space-y-1">
                                     <h4 className="text-lg font-semibold text-card-foreground">{TruncateText(Item['Title'], 80)}</h4>
-                                    <p className="text-card-foreground line-clamp-2">
-                                        {TruncateText(Item['Description'], 100)}
-                                    </p>
+                                        <p
+                                          className="text-card-foreground"
+                                          dangerouslySetInnerHTML={{
+                                            __html: TruncateText(Item['Description'], 231),
+                                          }}
+                                        ></p>
                                     <div className="flex items-center justify-between">
                                         <p className="text-sm text-card-foreground">{formatDate(Item['Post Date'])}</p>
                                         Read More..

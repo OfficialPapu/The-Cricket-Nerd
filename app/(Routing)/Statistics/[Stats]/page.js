@@ -47,7 +47,7 @@ const Stats = ({ params }) => {
                         />
                     </div>
                     <h1 className="text-4xl my-4 font-bold text-[#2e3192]">{statsData['Player Name']}</h1>
-            <div class="mb-10 shadow rounded-lg p-6 inline-block">
+            <div className="mb-10 shadow rounded-lg p-6 inline-block">
         <div className="text-gray-600">
         <strong>Role:</strong> {statsData['Player Role']}
         </div>

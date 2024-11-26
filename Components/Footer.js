@@ -22,36 +22,33 @@ export default function Footer() {
                 </div>
                 <nav className="grid gap-2">
                     <h4 className="text-lg font-semibold text-white">Navigation</h4>
-                    <Link href="/" className="text-muted-foreground hover:underline text-white" prefetch={false}>
-                        Home
+                    <Link href="/about-us" className="text-muted-foreground hover:underline text-white" prefetch={false}>
+                        About Us
                     </Link>
-                    <Link href="/News" className="text-muted-foreground hover:underline text-white" prefetch={false}>
-                        News
+                    <Link href="/contact-us" className="text-muted-foreground hover:underline text-white" prefetch={false}>
+                        Contact Us
                     </Link>
-                    <Link href="/Matches" className="text-muted-foreground hover:underline text-white" prefetch={false}>
-                        Matches
+                    <Link href="/privacy-policy" className="text-muted-foreground hover:underline text-white" prefetch={false}>
+                        Privacy Policy
                     </Link>
-                    <Link href="/Statistics" className="text-muted-foreground hover:underline text-white" prefetch={false}>
-                        Player
-                    </Link>
-                    <Link href="/Videos" className="text-muted-foreground hover:underline text-white" prefetch={false}>
-                        Videos
+                    <Link href="/terms-and-conditions" className="text-muted-foreground hover:underline text-white" prefetch={false}>
+                        Terms & Conditions
                     </Link>
                 </nav>
                 <div>
                     <h4 className="text-lg font-semibold mb-3 text-white">Social</h4>
                     <div className="flex gap-2">
                         <Link href="https://m.me/j/AbbAlJ2aLbmgcVxE/" className="text-muted-foreground hover:text-primary text-white" prefetch={false}>
-                        <i class='bx bxl-messenger text-3xl text-white'></i>
+                            <i className='bx bxl-messenger text-3xl text-white'></i>
                         </Link>
                         <Link href="https://www.facebook.com/thecricketnerd01?mibextid=ZbWKwL" className="text-muted-foreground hover:text-primary" prefetch={false}>
-                            <i class='bx bxl-facebook text-3xl text-white' ></i>
+                            <i className='bx bxl-facebook text-3xl text-white' ></i>
                         </Link>
                         <Link href="https://www.instagram.com/thecricketnerd17?igsh=dzlmaXV1N2VuMGw=" className="text-muted-foreground hover:text-primary" prefetch={false}>
-                            <i class='bx bxl-instagram text-3xl text-white' ></i>
+                            <i className='bx bxl-instagram text-3xl text-white' ></i>
                         </Link>
                         <Link href="https://youtube.com/@thecricketnerd17?si=u-Q-1rcOjpY8EAb6" className="text-muted-foreground hover:text-primary" prefetch={false}>
-                            <i class='bx bxl-youtube text-3xl text-white' ></i>
+                            <i className='bx bxl-youtube text-3xl text-white' ></i>
                         </Link>
                     </div>
                 </div>

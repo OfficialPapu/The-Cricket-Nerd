@@ -35,9 +35,13 @@ const CurrentEvents = () => {
                 <div className="mt-4 space-y-2">
                   <Link href={`Spotlight/${NewsData[0]['Slug Url']}`}> <h1 className="text-3xl font-bold md:text-4xl">{TruncateText(NewsData[0].Title, 100)}
                   </h1></Link>
-                  <p className="text-muted-foreground">
-                    {TruncateText(NewsData[0].Description, 200)}
-                  </p>
+                   <p
+                      className="text-muted-foreground"
+                      dangerouslySetInnerHTML={{
+                        __html: TruncateText(NewsData[0].Description, 200),
+                      }}
+                    ></p>
+
                 </div>
               </>
 
@@ -101,9 +105,12 @@ const CurrentEvents = () => {
                     />
                     <div>
                       <h3 className="text-sm font-medium">{TruncateText(Item.Title, 30)}</h3>
-                      <p className="mt-1 text-xs text-muted-foreground">
-                        {TruncateText(Item.Description, 100)}
-                      </p>
+                      <p
+                          className="mt-1 text-muted-foreground"
+                          dangerouslySetInnerHTML={{
+                            __html: TruncateText(Item.Description, 200),
+                          }}
+                        ></p>
                     </div>
                   </Link>
                 ))}
