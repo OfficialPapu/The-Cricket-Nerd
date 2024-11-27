@@ -17,7 +17,7 @@ const Spotlight = ({ spotlightData, API_BASE_URL }) => {
           <>
             <meta property="og:title" content={currentItem.Title} />
             <meta property="og:image" content={`${API_BASE_URL + currentItem.Thumbnail}`} />
-            <meta property="og:description" content={currentItem.Description.slice(0, 150) + '...'} />
+            <meta property="og:description" content={(currentItem.Description).slice(0, 150) + '...'} />
           </>
         )}
       </Head>
@@ -58,7 +58,7 @@ const Spotlight = ({ spotlightData, API_BASE_URL }) => {
         <section className="w-full px-4 md:px-10">
           {spotlightData.map((Item) => (
             <div
-            key={Item['ID']}
+              key={Item['ID']}
               dangerouslySetInnerHTML={{
                 __html: Item.Description.replace(/\n/g, '<br />'),
               }}

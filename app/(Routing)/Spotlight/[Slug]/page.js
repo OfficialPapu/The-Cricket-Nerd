@@ -23,6 +23,7 @@ async function fetchSpotLightData(Slug) {
 export async function generateMetadata({ params }) {
   const spotlightData = await fetchSpotLightData(params.Slug);
   const currentItem = spotlightData[0];
+  
 
   return {
     title: currentItem ? currentItem.Title : "The Cricket Nerd",

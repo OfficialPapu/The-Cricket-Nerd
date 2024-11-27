@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Footer() {
     return (
-        <footer className="bg-muted md:px-[10px] border border-gray-50 rounded-lg px-[40px] md:py-12 w-full grid place-items-center bg-[#2e3192]">
+        <footer className="md:px-[10px] border border-gray-50 rounded-lg px-[40px] md:py-12 w-full grid place-items-center bg-[#2e3192]">
             <div className="container max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <div className="flex flex-col items-start">
                     <Link href="#" className="flex items-center gap-2" prefetch={false}>
