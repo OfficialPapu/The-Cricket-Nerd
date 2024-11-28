@@ -1,6 +1,8 @@
 "use client";
 import RelatedNews from "../Related News";
 import Head from "next/head";
+import Loder from '@/Components/Loder';
+
 
 const Spotlight = ({ spotlightData, API_BASE_URL }) => {
   if (!spotlightData || spotlightData.length === 0) {
@@ -12,7 +14,7 @@ const Spotlight = ({ spotlightData, API_BASE_URL }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Head>
-        <title>{currentItem ? currentItem.Title : 'Loading...'}</title>
+        <title>{currentItem ? currentItem.Title : <Loder />}</title>
         {currentItem && (
           <>
             <meta property="og:title" content={currentItem.Title} />

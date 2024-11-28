@@ -26,7 +26,7 @@ const Statistics = () => {
             <header className="bg-card p-6 border-b shadow-sm">
                 <div className="container mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="bg-primary rounded-full w-12 h-12 flex items-center justify-center">
+                        <div className="rounded-full w-12 h-12 flex items-center justify-center">
                             <img src={`${API_FLAG + "np.svg"}`} />
                         </div>
                         <div>

@@ -1,18 +1,17 @@
+import Loder from '@/Components/Loder';
 import dynamic from 'next/dynamic';
 
 const Matches = dynamic(() => import('@/app/(Routing)/Home/Matches'), {
-  loading: () => <p>Loading Matches...</p>,  // Fallback UI
-  ssr: false, 
+  ssr: false,
 });
 
 const LatestNews = dynamic(() => import('@/app/(Routing)/Home/Latest News'), {
-  loading: () => <p>Loading Latest News...</p>,  // Fallback UI
-  ssr: false, 
+  loading: () =><Loder />,
+  ssr: false,
 });
 
 const YoutubeSlider = dynamic(() => import('@/app/(Routing)/Home/YouTube Video'), {
-  loading: () => <p>Loading YouTube Slider...</p>,  // Fallback UI
-  ssr: false, 
+  ssr: false,
 });
 
 export default function Home() {
