@@ -40,7 +40,6 @@ const NewsPage = () => {
         const response = await axios.get(`${API_HOME}`, {
           params: { LatestNews: true },
         });
-        console.log("API Response:", response.data);
 
         setNewsData(response.data);
       } catch (error) {
@@ -67,7 +66,7 @@ const NewsPage = () => {
             <h2 className="text-2xl font-bold mb-4 border-b-2 border-[#2A2A8C] pb-2">{category}</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {newsData[category].map((article, idx) => (
-                <Link href={"Spotlight/"+article['Slug Url']}>
+                <Link href={"Spotlight/"+article['Slug Url']} key={article.ID}>
                 <div
                   key={idx}
                   className="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow h-[445px]"
