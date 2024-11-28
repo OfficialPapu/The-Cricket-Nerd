@@ -1,106 +1,109 @@
 "use client";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { format } from 'date-fns';
+import { format, formatDistance, parseISO } from 'date-fns';
+import Link from 'next/link';
 
-const LatestNews = () => {
-    const API_HOME = process.env.NEXT_PUBLIC_API_HOME;
-    const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-    const [NewsData, setNewsData] = useState([]);
 
-    useEffect(() => {
-        GetData();
-    }, []);
+const formatPostDate = (dateString) => {
+  const postDate = parseISO(dateString);
+  const now = new Date();
 
-    const GetData = async () => {
-        let response = await axios.get(API_HOME, { params: { LatestNews: true } });
-        setNewsData(response.data);
-    };
+  const isToday = now.toDateString() === postDate.toDateString();
+  const daysAgo = Math.floor((now - postDate) / (1000 * 60 * 60 * 24)); // Calculate the number of days
 
-    const TruncateText = (text, maxLength) => {
-        if (text.length > maxLength) {
-            return text.substring(0, maxLength) + "...";
-        }
-        return text;
-    };
-
-const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const timeString = format(date, "hh:mm a");
-    const dateStringFormatted = format(date, "MMM, dd yyyy");
-    const timeStringFormatted = timeString.replace('am', 'AM').replace('pm', 'PM'); 
-    return `${timeStringFormatted} ${dateStringFormatted}`;
+  if (isToday) {
+    return formatDistance(postDate, now).replace(/about /, '').replace(/ ago/, '') + " ago";
+  } else if (daysAgo === 1) {
+    return "1 day ago"; // Singular for 1 day
+  } else if (daysAgo === 2) {
+    return "2 days ago"; // Singular for 2 days
+  } else {
+    return format(postDate, 'MMM d, yyyy'); // Formatted date for anything older than 2 days
+  }
 };
 
-    return (
-        <section className="w-full py-10 bg-background flex justify-center">
-            <div className="container px-4 md:px-6">
-                <div>
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground justify-start text-[#2e3192]">LATEST NEWS</h2>
-                </div>
-                <div className="mx-auto grid max-w-7xl items-start gap-10 py-12 lg:grid-cols-2 lg:gap-12">
-                    <div className="group block overflow-hidden rounded-2xl shadow-lg">
-                        {NewsData.slice(0, 1).map((Item) => (
-                            <div key={Item['ID']}>
-                                <Link href={`/Spotlight/${Item['Slug Url']}`}>
-                                    <img
-                                        src={`${API_BASE_URL + Item.Thumbnail}`}
-                                        width="550"
-                                        height="310"
-                                        alt="Latest News"
-                                        className="mx-auto aspect-video w-full overflow-hidden rounded-t-2xl object-cover object-center transition-all duration-300 group-hover:scale-105"
-                                    />
-                                    <div className="bg-card p-4 rounded-b-2xl">
-                                        <p className="text-sm text-card-foreground my-2">{formatDate(Item['Post Date'])}</p>
-                                        <h3 className="text-2xl font-bold text-card-foreground">
-                                            {TruncateText(Item['Title'], 90)}
-                                        </h3>
-                                        <p
-                                          className="text-card-foreground"
-                                          dangerouslySetInnerHTML={{
-                                            __html: TruncateText(Item['Description'], 231),
-                                          }}
-                                        ></p>
-                                        <button variant="outline" className="mt-2 border p-2 rounded-lg font-500 hover:bg-gray-50 duration-300">
-                                            Read More
-                                        </button>
-                                    </div>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="grid gap-4">
-                        {NewsData.slice(1).map((Item) => (
-                        <Link href={`/Spotlight/${Item['Slug Url']}`} key={`${Item['ID']}`}>
-                            <div className="group flex items-center gap-4 rounded-2xl shadow-lg bg-card py-8 px-6 transition-colors hover:bg-muted">
-                                <img
-                                    src={`${API_BASE_URL + Item.Thumbnail}`}
-                                    width="150"
-                                    height="150"
-                                    className="aspect-square w-36 overflow-hidden rounded-lg object-cover object-center transition-all duration-300 group-hover:scale-105"
-                                />
-                                <div className="space-y-1">
-                                    <h4 className="text-lg font-semibold text-card-foreground">{TruncateText(Item['Title'], 80)}</h4>
-                                        <p
-                                          className="text-card-foreground"
-                                          dangerouslySetInnerHTML={{
-                                            __html: TruncateText(Item['Description'], 231),
-                                          }}
-                                        ></p>
-                                    <div className="flex items-center justify-between">
-                                        <p className="text-sm text-card-foreground">{formatDate(Item['Post Date'])}</p>
-                                        Read More..
-                                    </div>
-                                </div>
-                            </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
 
-export default LatestNews;
+const NewsPage = () => {
+  const [newsData, setNewsData] = useState({
+    "Nepal Premier League": [],
+    "Nepal National": [],
+    "Nepal Domestic": [],
+    "Editorial": [],
+  });
+  const API_HOME = process.env.NEXT_PUBLIC_API_HOME;
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${API_HOME}`, {
+          params: { LatestNews: true },
+        });
+        console.log("API Response:", response.data);
+
+        setNewsData(response.data);
+      } catch (error) {
+        console.error("Error fetching news data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const TruncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
+  return (
+    <div className="container mx-auto px-10 py-8">
+      <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl justify-start text-[#2e3192] mb-10">LATEST NEWS</h2>
+      {Object.keys(newsData).map((category, index) => (
+        newsData[category].length > 0 && (
+          <section key={index} className="mb-8">
+            <h2 className="text-2xl font-bold mb-4 border-b-2 border-[#2A2A8C] pb-2">{category}</h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {newsData[category].map((article, idx) => (
+                <Link href={"Spotlight/"+article['Slug Url']}>
+                <div
+                  key={idx}
+                  className="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow h-[445px]"
+                >
+                  <div className="relative h-48 w-full">
+                    <img
+                      src={`${API_BASE_URL + article.Thumbnail}`}
+                      alt={article.Title}
+                      className="rounded-t-lg h-[200px] w-full object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-col space-y-1.5 p-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold text-[#2A2A8C] border-[#2A2A8C]">
+                        {category}
+                      </div>
+                      <time className="text-sm text-muted-foreground">{formatPostDate(article["Post Date"])}</time>
+                    </div>
+                    <h3 className="tracking-tight text-lg font-semibold text-[#2A2A8C]">{article.Title}</h3>
+                  </div>
+                  <div className="p-6 pt-0">
+                    <p className="text-sm text-muted-foreground"
+                      dangerouslySetInnerHTML={{
+                        __html: TruncateText(article.Description, 100).replace(/\n/g, '<br />'),
+                      }}
+                    ></p>
+                  </div>
+                </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )
+      ))}
+    </div>
+  );
+};
+
+export default NewsPage;
