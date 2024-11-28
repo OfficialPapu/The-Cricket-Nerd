@@ -1,4 +1,55 @@
 import Link from "next/link";
+export function generateMetadata() {
+  return {
+    title: 'Contact Us | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+    description: 'Get in touch with The Cricket Nerd for inquiries, feedback, or any other questions related to cricket news, match updates, player analysis, and more. We would love to hear from you!',
+    keywords: 'Contact The Cricket Nerd, cricket news, cricket updates, contact us, cricket blog, cricket analysis, contact form, feedback, cricket community, Nepal cricket',
+    openGraph: {
+      description: 'Get in touch with The Cricket Nerd for inquiries, feedback, or any other questions related to cricket news, match updates, player analysis, and more. We would love to hear from you!',
+      title: 'Contact Us | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+      type: 'website',
+      image: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+      url: 'https://www.thecricketnerd.com/contact-us',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Contact Us | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+      description: 'Get in touch with The Cricket Nerd for inquiries, feedback, or any other questions related to cricket news, match updates, player analysis, and more.',
+      image: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+    },
+    canonical: 'https://www.thecricketnerd.com/contact-us',
+    robots: {
+      index: true,
+      follow: true,
+    },
+    jsonLd: {
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      name: 'The Cricket Nerd',
+      description: 'Contact The Cricket Nerd for inquiries, feedback, or questions regarding cricket news, player updates, and match previews.',
+      url: 'https://www.thecricketnerd.com/contact-us',
+      publisher: {
+        '@type': 'Organization',
+        name: 'The Cricket Nerd',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+        },
+      },
+    },
+    link: [
+      {
+        rel: 'icon',
+        href: '/favicon.ico',
+      },
+    ],
+    socialProfiles: {
+      facebook: 'https://www.facebook.com/thecricketnerd01/',
+      instagram: 'https://www.instagram.com/thecricketnerd17/',
+    },
+  };
+}
 
 export default function ContactUs() {
   return (

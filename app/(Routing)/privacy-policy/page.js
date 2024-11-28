@@ -1,5 +1,57 @@
 import Link from "next/link";
 
+export function generateMetadata() {
+  return {
+    title: 'Privacy Policy | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+    description: 'Read the Privacy Policy of The Cricket Nerd to understand how we collect, use, and protect your personal information. Learn more about our data practices for cricket news, match updates, player analysis, and more.',
+    keywords: 'Privacy Policy, The Cricket Nerd, cricket news, personal information, data protection, user privacy, cricket blog, privacy terms, privacy policy Nepal',
+    openGraph: {
+      description: 'Read the Privacy Policy of The Cricket Nerd to understand how we collect, use, and protect your personal information. Learn more about our data practices for cricket news, match updates, player analysis, and more.',
+      title: 'Privacy Policy | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+      type: 'website',
+      image: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+      url: 'https://www.thecricketnerd.com/privacy-policy',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Privacy Policy | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+      description: 'Read the Privacy Policy of The Cricket Nerd to understand how we collect, use, and protect your personal information.',
+      image: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+    },
+    canonical: 'https://www.thecricketnerd.com/privacy-policy',
+    robots: {
+      index: true,
+      follow: true,
+    },
+    jsonLd: {
+      '@context': 'http://schema.org',
+      '@type': 'WebPage',
+      name: 'Privacy Policy | The Cricket Nerd',
+      description: 'Read The Cricket Nerd Privacy Policy to understand how your data is handled, including our practices around cricket news, player updates, and match previews.',
+      url: 'https://www.thecricketnerd.com/privacy-policy',
+      publisher: {
+        '@type': 'Organization',
+        name: 'The Cricket Nerd',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+        },
+      },
+    },
+    link: [
+      {
+        rel: 'icon',
+        href: '/favicon.ico',
+      },
+    ],
+    socialProfiles: {
+      facebook: 'https://www.facebook.com/thecricketnerd01/',
+      instagram: 'https://www.instagram.com/thecricketnerd17/',
+    },
+  };
+}
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-white">

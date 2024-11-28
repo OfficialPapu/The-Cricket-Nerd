@@ -56,14 +56,12 @@ export function generateMetadata() {
     link: [
       {
         rel: 'icon',
-        href: '/app/favicon.ico',
+        href: '/favicon.ico',
       },
     ],
     socialProfiles: {
-      twitter: 'https://twitter.com/yourhandle',
-      facebook: 'https://www.facebook.com/yourpage',
-      instagram: 'https://www.instagram.com/yourprofile',
-      linkedin: 'https://www.linkedin.com/company/yourcompany',
+      facebook: 'https://www.facebook.com/thecricketnerd01/',
+      instagram: 'https://www.instagram.com/thecricketnerd17/',
     },
   };
 }

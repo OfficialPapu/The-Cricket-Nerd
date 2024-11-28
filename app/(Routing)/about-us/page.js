@@ -1,4 +1,54 @@
-import Link from "next/link";
+export function generateMetadata() {
+  return {
+    title: 'About Us | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+    description: 'Learn more about The Cricket Nerd, your trusted source for the latest cricket news, match previews, player updates, and in-depth cricket analysis. We are passionate about bringing you the best in cricket content.',
+    keywords: 'About The Cricket Nerd, cricket news, cricket updates, cricket blog, cricket analysis, cricket insights, Nepal cricket, cricket community, cricket experts',
+    openGraph: {
+      description: 'Learn more about The Cricket Nerd, your trusted source for the latest cricket news, match previews, player updates, and in-depth cricket analysis. We are passionate about bringing you the best in cricket content.',
+      title: 'About Us | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+      type: 'website',
+      image: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+      url: 'https://www.thecricketnerd.com/about-us',
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'About Us | The Cricket Nerd | Nepal Cricket News, Matches, Players',
+      description: 'Learn more about The Cricket Nerd, your trusted source for the latest cricket news, match previews, player updates, and in-depth cricket analysis.',
+      image: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+    },
+    canonical: 'https://www.thecricketnerd.com/about-us',
+    robots: {
+      index: true,
+      follow: true,
+    },
+    jsonLd: {
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      name: 'The Cricket Nerd',
+      description: 'Your go-to source for the latest cricket news, match previews, player updates, and in-depth cricket analysis. Learn more about us and what we do.',
+      url: 'https://www.thecricketnerd.com/about-us',
+      publisher: {
+        '@type': 'Organization',
+        name: 'The Cricket Nerd',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.thecricnerd.com/Images/Logo/The Cricket Nerd.png',
+        },
+      },
+    },
+    link: [
+      {
+        rel: 'icon',
+        href: '/favicon.ico',
+      },
+    ],
+    socialProfiles: {
+      facebook: 'https://www.facebook.com/thecricketnerd01/',
+      instagram: 'https://www.instagram.com/thecricketnerd17/',
+    },
+  };
+}
 
 export default function AboutUs() {
   return (
@@ -14,7 +64,7 @@ export default function AboutUs() {
                 Your ultimate destination for everything related to Nepal Cricket.
               </p>
               <p className="mt-4 text-gray-700">
-                At The Cricket Nerd, we are passionate about the game that unites millions across the country and beyond. 
+                At The Cricket Nerd, we are passionate about the game that unites millions across the country and beyond.
                 Our mission is to provide cricket fans, especially from Nepal, with comprehensive and engaging content that celebrates the spirit of the sport.
               </p>
             </section>
@@ -22,7 +72,7 @@ export default function AboutUs() {
             <section>
               <h2 className="mb-4 text-xl font-semibold text-[#2E3192]">Who We Are</h2>
               <p className="text-gray-700">
-                We are a team of dedicated cricket enthusiasts who live and breathe the game. From breaking news and in-depth analysis 
+                We are a team of dedicated cricket enthusiasts who live and breathe the game. From breaking news and in-depth analysis
                 to exclusive player features and entertaining trivia, we cover every angle to keep you informed and entertained.
               </p>
             </section>
@@ -47,7 +97,7 @@ export default function AboutUs() {
             <section>
               <h2 className="mb-4 text-xl font-semibold text-[#2E3192]">Why Choose Us?</h2>
               <p className="text-gray-700">
-                Whether you're a casual fan or a cricket connoisseur, The Cricket Nerd delivers curated content tailored to your interests. 
+                Whether you're a casual fan or a cricket connoisseur, The Cricket Nerd delivers curated content tailored to your interests.
                 We focus on quality, accuracy, and storytelling that resonates with cricket lovers worldwide.
               </p>
             </section>
