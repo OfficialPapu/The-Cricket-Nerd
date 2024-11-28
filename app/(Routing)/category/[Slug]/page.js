@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { BiArrowBack } from "react-icons/bi";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { format, formatDistance, parseISO } from 'date-fns';
-import Loder from '@/Components/Loder';
+import Loader from '@/Components/Loader';
 
 const API_NEWS = process.env.NEXT_PUBLIC_API_NEWS;
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -42,7 +42,7 @@ export default function Page() {
   }, [Slug]);
 
   if (newsCategoryData.length === 0) {
-    return <Loder />;
+    return <Loader />;
   }
 
   const formatPostDate = (dateString) => {

@@ -1,7 +1,7 @@
 "use client"
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Loder from '@/Components/Loder';
+import Loader from '@/Components/Loader';
 
 const Stats = ({ params }) => {
     const [statsData, setStatsData] = useState(null);
@@ -30,7 +30,7 @@ const Stats = ({ params }) => {
     }, [SlugUrl]);
 
     if (!statsData) {
-        return <Loder />;
+        return <Loader />;
     }
 
 
