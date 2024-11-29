@@ -9,7 +9,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { format, formatDistance, parseISO } from 'date-fns';
 import Loader from '@/Components/Loader';
-import MetaInfo from '@/Components/MetaInfo/News Category';
+import CategoryNewsMetaInfo from '@/Components/MetaInfo/CategoryNewsMetaInfo';
 
 const API_NEWS = process.env.NEXT_PUBLIC_API_NEWS;
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -62,7 +62,7 @@ export default function Page() {
   return (
     <div>
      <head>
-      {Slug && <MetaInfo Slug={Slug} />} 
+      {Slug && <CategoryNewsMetaInfo Slug={Slug} />} 
     </head>
       <section className="w-full py-12 bg-white">
         <div className="container px-4 md:px-6">

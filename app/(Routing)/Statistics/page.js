@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from "next/link"
 import axios from 'axios';
+import PlayersMetaInfo from '@/Components/MetaInfo/PlayersMetaInfo';
 const Statistics = () => {
     const API_STATISTICS = process.env.NEXT_PUBLIC_API_STATISTICS;
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -22,6 +23,8 @@ const Statistics = () => {
         fetchData();
     }, [])
     return (
+        <>
+        <PlayersMetaInfo/>
         <div className="bg-background text-foreground min-h-screen flex flex-col">
             <header className="bg-card p-6 border-b shadow-sm">
                 <div className="container mx-auto flex items-center justify-between">
@@ -85,6 +88,7 @@ const Statistics = () => {
                 </div>
             </main>
         </div>
+        </>
     )
 }
 

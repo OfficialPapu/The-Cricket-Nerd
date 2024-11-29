@@ -1,4 +1,5 @@
 "use client";
+import MatchesMetaInfo from '@/Components/MetaInfo/MatchesMetaInfo';
 import axios from 'axios';
 import { format, parse } from 'date-fns';
 import React, { useEffect, useState } from 'react';
@@ -23,6 +24,7 @@ const Match = () => {
 
     return (
         <div>
+            <MatchesMetaInfo/>
             <section className="bg-background pt-10 mb-10 flex justify-center">
                 <div className="container px-4 md:px-6">
                     <div className="mb-6">

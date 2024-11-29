@@ -1,4 +1,5 @@
 "use client"
+import VideosMetaInfo from "@/Components/MetaInfo/VideosMetaInfo";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react"
@@ -21,6 +22,8 @@ export default function Videos() {
     }, []);
 
     return (
+        <>
+        <VideosMetaInfo/>
         <div className="mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold mb-2 text-[#2e3192]">OUR YOUTUBE CHANNEL</h1>
@@ -50,6 +53,7 @@ export default function Videos() {
                 ))}
             </div>
         </div>
+        </>
     )
 }
 
