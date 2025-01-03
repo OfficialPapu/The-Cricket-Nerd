@@ -10,7 +10,7 @@ const formatPostDate = (dateString) => {
   const now = new Date();
 
   const isToday = now.toDateString() === postDate.toDateString();
-  const daysAgo = Math.floor((now - postDate) / (1000 * 60 * 60 * 24)); // Calculate the number of days
+  const daysAgo = Math.floor((now - postDate) / (1000 * 60 * 60 * 24)); 
 
   if (isToday) {
     return formatDistance(postDate, now).replace(/about /, '').replace(/ ago/, '') + " ago";

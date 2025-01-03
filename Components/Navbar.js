@@ -5,6 +5,12 @@ import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    setIsLoggedIn(!!token); 
+  }, []);
 
   useEffect(() => {
     if (isOpen && screen.width <= 1024) {
@@ -63,11 +69,14 @@ export default function Navbar() {
             <li>
               <Link href="/Matches" onClick={closeMenu}>Matches</Link>
             </li>
-            <li>
+            <li>  
               <Link href="/Videos" onClick={closeMenu}>Videos</Link>
             </li>
             <li>
               <Link href="/Statistics" onClick={closeMenu}>Players</Link>
+            </li>
+            <li>
+              <Link href={isLoggedIn ? "/dashboard" : "/auth/login"} onClick={closeMenu}>Account</Link>
             </li>
           </ul>
         </nav>

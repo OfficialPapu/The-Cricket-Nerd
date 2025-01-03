@@ -13,7 +13,9 @@ const LatestNews = dynamic(() => import('@/app/(Routing)/Home/Latest News'), {
 const YoutubeSlider = dynamic(() => import('@/app/(Routing)/Home/YouTube Video'), {
   ssr: false,
 });
-
+const Live = dynamic(() => import('@/app/(Routing)/Home/Live Match'), {
+  ssr: false,
+});
 export function generateMetadata() {
   return {
     title: 'The Cricket Nerd | Nepal Cricket News, Matches, Players',
@@ -70,6 +72,7 @@ export default function Home() {
   return (
     <>
       <h1 className="hidden">The Cricket Nerd | Nepal Cricket News, Matches, Players</h1>
+      <Live Match></Live>
       <Matches />
       <LatestNews />
       <YoutubeSlider />
