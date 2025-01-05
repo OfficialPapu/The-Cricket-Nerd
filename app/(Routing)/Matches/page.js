@@ -24,7 +24,7 @@ const Match = () => {
 
     return (
         <div>
-            <MatchesMetaInfo/>
+            <MatchesMetaInfo />
             <section className="bg-background pt-10 mb-10 flex justify-center">
                 <div className="container px-4 md:px-6">
                     <div className="mb-6">
@@ -38,25 +38,25 @@ const Match = () => {
                             const time = parse(timeString, 'HH:mm:ss', new Date());
                             const formattedTime = format(time, 'hh:mm a');
                             return (
-                            <a href={match['Link']} key={match['ID']}>
-                                <div className="bg-card rounded-lg border border-muted p-4 flex flex-col gap-6" key={match['Match ID']}>
-                                    <h2>{match['Tournament Name']}</h2>
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-2">
-                                            <img src={`${API_FLAG + match['FlagA']}`} className="w-[40px] object-contain h-[40px]" alt="Flag A" />
-                                            <span className="text-xs">{match['Country A']}</span>
+                                <a href={`/scoreboard/${match['ID']}`} key={match['ID']}>
+                                    <div className="bg-card rounded-lg border border-muted p-4 flex flex-col gap-6" key={match['Match ID']}>
+                                        <h2>{match['Tournament Name']}</h2>
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <img src={`${API_FLAG + match['FlagA']}`} className="w-[40px] object-contain h-[40px]" alt="Flag A" />
+                                                <span className="text-xs">{match['Country A']}</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-xs">{match['Country B']}</span>
+                                                <img src={`${API_FLAG + match['FlagB']}`} className="object-contain w-[40px] h-[40px]" alt="Flag B" />
+                                            </div>
                                         </div>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-xs">{match['Country B']}</span>
-                                            <img src={`${API_FLAG + match['FlagB']}`} className="object-contain w-[40px] h-[40px]" alt="Flag B" />
+                                        <div className="flex flex-col items-start justify-between gap-2">
+                                            <div className="text-sm text-muted-foreground">
+                                                {formattedTime} - {formattedDate}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-start justify-between gap-2">
-                                        <div className="text-sm text-muted-foreground">
-                                            {formattedTime} - {formattedDate}
-                                        </div>
-                                    </div>
-                                </div>
                                 </a>
                             );
                         })}

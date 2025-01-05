@@ -58,7 +58,7 @@ const NewsPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-10 py-8">
+    <div className="mx-auto px-10 py-8">
       <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl justify-start text-[#2e3192] mb-10">LATEST NEWS</h2>
       {Object.keys(newsData).map((category, index) => (
         newsData[category].length > 0 && (

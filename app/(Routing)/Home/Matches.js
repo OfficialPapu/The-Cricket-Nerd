@@ -24,7 +24,7 @@ const Match = () => {
   return (
     <div>
       <section className="bg-background pt-6 md:pt-10 mb-10 flex justify-center">
-        <div className="container px-4 md:px-6">
+        <div className="w-full px-4 md:px-6">
           <div className="mb-6 md:mb-6">
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl text-[#2e3192]">MATCHES</h2>
           </div>
@@ -49,7 +49,7 @@ const Match = () => {
               const formattedTime = format(time, 'hh:mm a');
 
               return (
-                <a href={match['Link']} key={match['ID']}>
+                <a href={`/scoreboard/${match['ID']}`} key={match['ID']}>
                   <div className="bg-card rounded-lg border border-muted p-4 flex flex-col gap-6">
                     <h2>{match['Tournament Name']}</h2>
                     <div className="flex items-center justify-between">
