@@ -38,7 +38,7 @@ const Match = () => {
                             const time = parse(timeString, 'HH:mm:ss', new Date());
                             const formattedTime = format(time, 'hh:mm a');
                             return (
-                                <a href={`/scoreboard/${match['ID']}`} key={match['ID']}>
+                                <a href={match['Status']=="Live" ? `/scoreboard/${match['ID']}` : "#"} key={match['ID']}>
                                     <div className="bg-card rounded-lg border border-muted p-4 flex flex-col gap-6" key={match['Match ID']}>
                                         <h2>{match['Tournament Name']}</h2>
                                         <div className="flex items-center justify-between">
@@ -51,10 +51,12 @@ const Match = () => {
                                                 <img src={`${API_FLAG + match['FlagB']}`} className="object-contain w-[40px] h-[40px]" alt="Flag B" />
                                             </div>
                                         </div>
-                                        <div className="flex flex-col items-start justify-between gap-2">
+                                        <div className="flex items-start justify-between gap-2">
                                             <div className="text-sm text-muted-foreground">
                                                 {formattedTime} - {formattedDate}
                                             </div>
+                                            <div className='text-white rounded-md px-1 bg-[#2e3192]'>{match['Status']}</div>
+
                                         </div>
                                     </div>
                                 </a>
